@@ -1,0 +1,49 @@
+---
+- name: Setup Quay Registry
+  gather_facts: no
+  hosts: localhost
+  vars:
+    quay_namespace: quay
+    quay_route: https://registry.apps.home.ocplab.com
+    quay_registry_name: quay
+    quay_init_username: quayadmin
+    quay_init_password: XXXXXX
+  tasks:
+    - name: Wait for Quay API
+      ansible.builtin.uri:
+        method: GET
+        url: "{{ quay_route }}/health/instance"
+        validate_certs: no
+      register: quay_status
+      until:
+        - quay_status.status == 200
+        - quay_status.json.data.services is defined
+        - quay_status.json.data.services | dict2items | rejectattr('value', 'equalto', True) | list | count == 0
+      delay: 10
+      retries: 60
+
+    - name: Ensure the initial user exists
+      herve4m.quay.quay_first_user:
+        username: "{{ quay_init_username }}"
+        email: "{{ quay_init_username }}@local.com"
+        password: "{{ quay_init_password }}"
+        create_token: true
+        quay_host: "{{ quay_route }}"
+      register: result
+
+    - name: get access token
+      set_fact:
+        access_token: "{{ result['access_token'] }}"
+
+    - name: Create access token secret
+      k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: api-token
+            namespace: quay
+          data:
+            token: "{{ access_token | b64encode }}"
+          type: Opaque
