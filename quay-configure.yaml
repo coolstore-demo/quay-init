@@ -5,32 +5,47 @@
   vars:
     quay_teams:
       - name: maintainers
-        organization: productcatalog
-        description: Maintainers of product catalog images
+        organization: coolstore
+        description: Maintainers of coolstore images
         members:
           - user1
         role: member
 
     quay_organizations:
-      - name: productcatalog
-        email: gnunn@local.com
+      - name: coolstore
+        email: admin@local.com
         time_machine_expiration: 14d
 
     quay_repositories:
-      - name: server
-        organization: productcatalog
-        description: Product Catalog back-end
+      - name: inventory-quarkus
+        organization: coolstore
+        description: Inventory
         permissions:
           - name: maintainers
             type: team
             role: admin
-      - name: client
-        org: productcatalog
-        description: Product Catalog front-end
+      - name: web-nodejs
+        org: coolstore
+        description: Frontend
         permissions:
-          - name: productcatalog
+          - name: maintainers
             type: team
             role: admin
+      - name: vertx-gateway
+        org: coolstore
+        description: Gateway
+        permissions:
+          - name: maintainers
+            type: team
+            role: admin
+      - name: catalog-spring-boot
+        org: coolstore
+        description: Catalog
+        permissions:
+          - name: maintainers
+            type: team
+            role: admin
+
   tasks:
     - name: create organizations
       herve4m.quay.quay_organization:
