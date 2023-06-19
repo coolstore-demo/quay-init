@@ -8,10 +8,6 @@
         password: openshift
         email: user1@local.com
         superuser: false
-      - username: admin
-        password: quayadmin
-        email: admin@local.com
-        superuser: true
 
     quay_teams:
       - name: maintainers

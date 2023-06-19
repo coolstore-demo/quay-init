@@ -3,11 +3,11 @@
   gather_facts: no
   hosts: localhost
   vars:
-    quay_namespace: quay
-    quay_route: https://registry.apps.home.ocplab.com
+    quay_namespace: quay-operator
+    quay_route: https://registry-quay-app.svc
     quay_registry_name: quay
-    quay_init_username: quayadmin
-    quay_init_password: XXXXXX
+    quay_init_username: admin
+    quay_init_password: quayadmin
   tasks:
     - name: Wait for Quay API
       ansible.builtin.uri:
