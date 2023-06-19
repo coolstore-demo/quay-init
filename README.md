@@ -1,6 +1,6 @@
 An ansible playbook to initialize the Quay Registry, inspiration and some snippets taken from [RHEL Edge Automation](https://github.com/redhat-cop/rhel-edge-automation-arch) project.
 
-You will need to initialize the modules used from ansible galaxy as follows:
+You will need to initialize the [modules](https://galaxy.ansible.com/herve4m/quay) used from ansible galaxy as follows:
 
 ```
 ansible-galaxy collection install -r collections/requirements.yml
