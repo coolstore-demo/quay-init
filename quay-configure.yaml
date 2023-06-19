@@ -3,6 +3,16 @@
   gather_facts: no
   hosts: localhost
   vars:
+    quay_users:
+      - username: user1
+        password: openshift
+        email: user1@local.com
+        superuser: false
+      - username: admin
+        password: quayadmin
+        email: admin@local.com
+        superuser: true
+
     quay_teams:
       - name: maintainers
         organization: coolstore
@@ -47,6 +57,15 @@
             role: admin
 
   tasks:
+    - name: Create users
+      herve4m.quay.quay_user:
+        username: "{{ item.username }}"
+        email: "{{ item.email }}"
+        password: "{{ item.password }}"
+        superuser: {{ item.superuser }}
+        state: present
+      with_items: "{{ quay_users }}"
+
     - name: create organizations
       herve4m.quay.quay_organization:
         name: "{{ item.name }}"
