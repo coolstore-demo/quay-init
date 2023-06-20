@@ -20,7 +20,7 @@
 
     quay_organizations:
       - name: coolstore
-        email: admin@local.com
+        email: coolstore@local.com
         time_machine_expiration: 14d
 
     quay_repositories:
