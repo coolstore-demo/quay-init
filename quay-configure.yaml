@@ -9,7 +9,6 @@
       - username: user1
         password: openshift
         email: user1@local.com
-        superuser: false
 
     quay_teams:
       - name: maintainers
@@ -60,7 +59,6 @@
         username: "{{ item.username }}"
         email: "{{ item.email }}"
         password: "{{ item.password }}"
-        superuser: {{ item.superuser }}
         quay_host: "{{ quay_route }}"
         quay_token: "{{ access_token }}"
         state: present
