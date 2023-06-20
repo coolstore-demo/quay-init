@@ -3,6 +3,8 @@
   gather_facts: no
   hosts: localhost
   vars:
+    quay_route: http://registry-quay-app
+
     quay_users:
       - username: user1
         password: openshift
@@ -59,6 +61,8 @@
         email: "{{ item.email }}"
         password: "{{ item.password }}"
         superuser: {{ item.superuser }}
+        quay_host: "{{ quay_route }}"
+        quay_token: "{{ access_token }}"
         state: present
       with_items: "{{ quay_users }}"
 
