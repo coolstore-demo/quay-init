@@ -44,7 +44,7 @@
           kind: Secret
           metadata:
             name: api-token
-            namespace: quay
+            namespace: "{{ quay_namespace }}"
           data:
             token: "{{ access_token | b64encode }}"
           type: Opaque
