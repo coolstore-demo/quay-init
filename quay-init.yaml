@@ -4,7 +4,7 @@
   hosts: localhost
   vars:
     quay_namespace: quay-operator
-    quay_route: https://registry-quay-app.svc
+    quay_route: http://registry-quay-app
     quay_registry_name: quay
     quay_init_username: admin
     quay_init_password: quayadmin
