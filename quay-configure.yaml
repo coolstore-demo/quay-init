@@ -32,21 +32,21 @@
             type: team
             role: admin
       - name: web-nodejs
-        org: coolstore
+        organization: coolstore
         description: Frontend
         permissions:
           - name: maintainers
             type: team
             role: admin
       - name: vertx-gateway
-        org: coolstore
+        organization: coolstore
         description: Gateway
         permissions:
           - name: maintainers
             type: team
             role: admin
       - name: catalog-spring-boot
-        org: coolstore
+        organization: coolstore
         description: Catalog
         permissions:
           - name: maintainers
