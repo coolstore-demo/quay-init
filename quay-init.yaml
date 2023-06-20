@@ -29,6 +29,7 @@
         password: "{{ quay_init_password }}"
         create_token: true
         quay_host: "{{ quay_route }}"
+        validate_certs: false
       register: result
 
     - name: get access token
