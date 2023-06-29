@@ -3,6 +3,8 @@
   gather_facts: no
   hosts: localhost
   vars:
+    ansible_remote_tmp: /runner/.ansible/tmp
+
     quay_route: http://registry-quay-app
 
     quay_users:
