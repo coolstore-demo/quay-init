@@ -99,3 +99,15 @@
         quay_token: "{{ access_token }}"
         visibility: "public"
       with_items: "{{ quay_repositories }}"
+
+    - name: Create notification on push to pipelines
+      herve4m.quay.quay_notification:
+        repository: inventory-quarkus
+        title: Notify Pipelines on Push
+        event: repo_push
+        method: webhook
+        config:
+          url: https://el-quay-coolstore-cicd.{{ sub_domain}}
+        state: present
+        quay_host: "{{ quay_route }}"
+        quay_token: "{{ access_token }}"
