@@ -105,6 +105,7 @@
     - name: Create notification on push to pipelines
       herve4m.quay.quay_notification:
         repository: inventory-quarkus
+        organization: coolstore
         title: Notify Pipelines on Push
         event: repo_push
         method: webhook
